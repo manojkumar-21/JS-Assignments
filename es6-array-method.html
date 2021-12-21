@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Candidate Interview</title>
+    <style>
+         header{
+            border: 1px solid black;
+            text-align: center;
+            background-color: gray;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Candidate Interview</h1>
+    </header>
+   
+    <div>
+        <h4> Candidate Interview Score</h4>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Score</th>
+              </tr>
+            </thead>
+            <tbody  id="score-board"></tbody>
+        </table>
+    </div>
+
+    <div>
+        <h4>Selected Candidate(score > 75)</h4>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Score</th>
+              </tr>
+            </thead>
+            <tbody id="selected-candidates"></tbody>
+        </table>
+    </div>
+    <div>
+        <h4>Team Members</h4>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Score</th>
+              </tr>
+            </thead>
+            <tbody id="team"></tbody>
+        </table>
+    </div>
+
+    
+    <script>
+        let data= [
+                    {
+                        "id": 1,
+                        "name": "Leanne Graham",
+                        "username": "Bret",
+                        "email": "Sincere@april.biz",
+                        "address": {
+                        "street": "Kulas Light",
+                        "suite": "Apt. 556",
+                        "city": "Gwenborough",
+                        "zipcode": "92998-3874",
+                        },
+                        "phone": "1-770-736-8031 x56442",
+                        "score": 0
+                        
+                    },
+                    {
+                        "id": 2,
+                        "name": "Ervin Howell",
+                        "username": "Antonette",
+                        "email": "Shanna@melissa.tv",
+                        "address": {
+                        "street": "Victor Plains",
+                        "suite": "Suite 879",
+                        "city": "Wisokyburgh",
+                        "zipcode": "90566-7771",
+                        },
+                        "phone": "010-692-6593 x09125",
+                        "score": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Clementine Bauch",
+                        "username": "Samantha",
+                        "email": "Nathan@yesenia.net",
+                        "address": {
+                        "street": "Douglas Extension",
+                        "suite": "Suite 847",
+                        "city": "McKenziehaven",
+                        "zipcode": "59590-4157",
+                        },
+                        "phone": "1-463-123-4447",
+                        "score": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Patricia Lebsack",
+                        "username": "Karianne",
+                        "email": "Julianne.OConner@kory.org",
+                        "address": {
+                        "street": "Hoeger Mall",
+                        "suite": "Apt. 692",
+                        "city": "South Elvis",
+                        "zipcode": "53919-4257",
+                        },
+                        "phone": "493-170-9623 x156",
+                        "score": 0
+                    },
+                    {
+                        "id": 5,
+                        "name": "Chelsey Dietrich",
+                        "username": "Kamren",
+                        "email": "Lucio_Hettinger@annie.ca",
+                        "address": {
+                        "street": "Skiles Walks",
+                        "suite": "Suite 351",
+                        "city": "Roscoeview",
+                        "zipcode": "33263",
+                        },
+                        "phone": "(254)954-1289",
+                        "score": 0
+                    },
+                    {
+                        "id": 6,
+                        "name": "Mrs. Dennis Schulist",
+                        "username": "Leopoldo_Corkery",
+                        "email": "Karley_Dach@jasper.info",
+                        "address": {
+                        "street": "Norberto Crossing",
+                        "suite": "Apt. 950",
+                        "city": "South Christy",
+                        "zipcode": "23505-1337",
+                        },
+                        "phone": "1-477-935-8478 x6430",
+                        "score": 0
+                        
+                    },
+                    {
+                        "id": 7,
+                        "name": "Kurtis Weissnat",
+                        "username": "Elwyn.Skiles",
+                        "email": "Telly.Hoeger@billy.biz",
+                        "address": {
+                        "street": "Rex Trail",
+                        "suite": "Suite 280",
+                        "city": "Howemouth",
+                        "zipcode": "58804-1099",
+                        },
+                        "phone": "210.067.6132",
+                        "score": 0
+                    },
+                    {
+                        "id": 8,
+                        "name": "Nicholas Runolfsdottir V",
+                        "username": "Maxime_Nienow",
+                        "email": "Sherwood@rosamond.me",
+                        "address": {
+                        "street": "Ellsworth Summit",
+                        "suite": "Suite 729",
+                        "city": "Aliyaview",
+                        "zipcode": "45169",
+                        },
+                        "phone": "586.493.6943 x140",
+                        "score": 0
+                    },
+                    {
+                        "id": 9,
+                        "name": "Glenna Reichert",
+                        "username": "Delphine",
+                        "email": "Chaim_McDermott@dana.io",
+                        "address": {
+                        "street": "Dayna Park",
+                        "suite": "Suite 449",
+                        "city": "Bartholomebury",
+                        "zipcode": "76495-3109",
+                        },
+                        "phone": "(775)976-6794 x41206",
+                        "score": 0
+                    },
+                    {
+                        "id": 10,
+                        "name": "Clementina DuBuque",
+                        "username": "Moriah.Stanton",
+                        "email": "Rey.Padberg@karina.biz",
+                        "address": {
+                        "street": "Kattie Turnpike",
+                        "suite": "Suite 198",
+                        "city": "Lebsackbury",
+                        "zipcode": "31428-2261",
+                        },
+                        "phone": "024-648-3804",
+                        "score": 0
+                    }
+]
+
+//   conducting interview to multi candidate
+   let conductInterview = data.map(function(obj){
+       return  {
+           ...obj,
+          score : Math.floor(Math.random()*100)
+        }
+    })
+    console.log(conductInterview);
+
+    let info = conductInterview.map(res => {
+                let users=`<tr key=${res.id}>
+                    <td>${res.id}</td>
+                    <td>${res.name}</td>
+                    <td>${res.email}</td>
+                    <td>${res.address.street},${res.address.suite},${res.address.city},${res.address.zipcode}</td>
+                    <td>${res.phone}</td>
+                    <td>${res.score}</td>
+                    </tr> `
+                return users;
+            }).join("")
+    document.getElementById("score-board").innerHTML = info;
+
+
+    
+    // filter selected candidate if score > 75
+    let selectedCandidates = conductInterview.filter((obj) => {
+       return obj.score >= 75;
+        
+    })
+    console.log(selectedCandidates);
+    let passed = selectedCandidates.map(res => {
+                let users=`<tr key=${res.id}>
+                    <td>${res.id}</td>
+                    <td>${res.name}</td>
+                    <td>${res.email}</td>
+                    <td>${res.address.street},${res.address.suite},${res.address.city},${res.address.zipcode}</td>
+                    <td>${res.phone}</td>
+                    <td>${res.score}</td>
+                    </tr> `
+                return users;
+            }).join("")
+    document.getElementById("selected-candidates").innerHTML = passed;
+
+    
+    // creating team from selected candidates
+    let teamMembers =[]
+    // teams.push(selectedCandidates)
+    selectedCandidates.map(function(obj){
+        teamMembers.push(obj)
+
+    }) 
+    console.log(teamMembers)
+    let team = teamMembers.map(res => {
+                let users=`<tr key=${res.id}>
+                    <td>${res.id}</td>
+                    <td>${res.name}</td>
+                    <td>${res.email}</td>
+                    <td>${res.address.street},${res.address.suite},${res.address.city},${res.address.zipcode}</td>
+                    <td>${res.phone}</td>
+                    <td>${res.score}</td>
+                    </tr> `
+                return users;
+            }).join("")
+    document.getElementById("team").innerHTML = team;
+
+
+
+
+
+
+
+
+        
+    </script>
+    
+</body>
+</html>
